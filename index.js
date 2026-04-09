@@ -41,10 +41,7 @@ try{
   const characters = data.results;
   console.log(characters); // just for debugging
 
-    const characters = data.results;
-    console.log(characters); // just for debugging
-
-    cardContainer.innerHTML = ""; // clear old cards
+   cardContainer.innerHTML = ""; // clear old cards
     // Here the cards will be fetched dynamically
     characters.forEach((character) => {
       const card = createCharacterCard(character);
