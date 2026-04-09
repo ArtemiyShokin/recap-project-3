@@ -12,13 +12,12 @@ const pagination = document.querySelector('[data-js="pagination"]');
 const maxPage = 1;
 const page = 1;
 const searchQuery = "";
-
-<<<<<<< Updated upstream
 // Fetch API
 
 async function fetchCharacters() {
-  const response = await fetch("https://rickandmortyapi.com/api/character");
-  const data = await response.json();
+  try {
+    const response = await fetch("https://rickandmortyapi.com/api/character");
+    const data = await response.json();
 
   const characters = data.results;
 
@@ -26,5 +25,3 @@ async function fetchCharacters() {
 }
 
 fetchCharacters();
-=======
->>>>>>> Stashed changes
