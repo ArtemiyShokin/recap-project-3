@@ -4,7 +4,7 @@ const pagination = document.querySelector('[data-js="pagination"]');
 import { maxPage } from "../../index.js";
 import { page } from "../../index.js";
 
-prevButton.addEventListener("click", () => {
+export const PrevButton = prevButton.addEventListener("click", () => {
   if (page <= 1) {
     throw new Error("Can not go over or under page-count");
   }
@@ -16,7 +16,7 @@ prevButton.addEventListener("click", () => {
   }
 });
 
-nextButton.addEventListener("click", () => {
+export const NextButton = nextButton.addEventListener("click", () => {
   if (page >= maxPage) {
     throw new Error("Can not go over or under page-count");
   }
@@ -25,3 +25,5 @@ nextButton.addEventListener("click", () => {
   pagination.textContent = `${page}/${maxPage}`;
   console.log(page);
 });
+
+// https://rickandmortyapi.com/api/character ?page=<pageIndex>  add this to the fetch url
