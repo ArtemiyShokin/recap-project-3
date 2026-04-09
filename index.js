@@ -18,7 +18,7 @@ const pageResponse = await fetch(
   `https://rickandmortyapi.com/api/character?page=${page}`,
 );
 const pageData = await pageResponse.json();
-console.log("hello?" + pageData.info.pages);
+// console.log("hello?" + pageData.info.pages);
 let maxPage = pageData.info.pages;
 const searchQuery = "";
 
@@ -28,7 +28,7 @@ const searchQuery = "";
 async function fetchCharacters() {
   try {
     const response = await fetch(
-      `https://rickandmortyapi.com/api/character?page=${page}`,
+      `https://rickandmortyapi.com/api/character?page=${page}` /* I changed the fetchCharacters function to allow different page numbers to load */,
     );
     const data = await response.json();
 
@@ -51,8 +51,8 @@ fetchCharacters();
 //pagination features
 //1. pagination checker
 let pageChecker = (pagination.textContent = `${page}/${maxPage}`);
-
-//move to navpagination.js in the last step
+//2. page navigation buttons
+//( let's move them to navpagination.js in the last step)
 prevButton.addEventListener("click", () => {
   if (page <= 1) {
     throw new Error("Can not go under 1");
