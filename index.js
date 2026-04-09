@@ -1,6 +1,4 @@
-import { createCharacterCard } from "./components/CharacterCard.js";
-import { PrevButton } from "./components/NavPagination/NavPagination.js";
-import { NextButton } from "./components/NavPagination/NavPagination.js";
+import { createCharacterCard } from "./components/CharacterCard/CharacterCard.js";
 
 const cardContainer = document.querySelector('[data-js="card-container"]');
 const searchBarContainer = document.querySelector(
@@ -16,12 +14,24 @@ const searchQuery = "";
 // Fetch API
 
 async function fetchCharacters() {
+try{
   const response = await fetch("https://rickandmortyapi.com/api/character");
   const data = await response.json();
 
   const characters = data.results;
+  console.log(characters); // just for debugging
 
-  console.log(characters);
+  cardContainer.innerHTML = "";  // clear old cards
+  // Here the cards will be fetched dynamically
+  characters.forEach((character) => {
+    const card = createCharacterCard(character);
+    cardContainer.appendChild(card);
+  });
+
+  } catch (error) {
+    console.error("Oops:", error);
+  }
+  
 }
 
 fetchCharacters();
