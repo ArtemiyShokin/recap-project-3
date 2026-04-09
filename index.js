@@ -4,13 +4,10 @@ const searchBarContainer = document.querySelector(
 );
 const searchBar = document.querySelector('[data-js="search-bar"]');
 const navigation = document.querySelector('[data-js="navigation"]');
-const prevButton = document.querySelector('[data-js="button-prev"]');
-const nextButton = document.querySelector('[data-js="button-next"]');
-const pagination = document.querySelector('[data-js="pagination"]');
 
 // States
-const maxPage = 3;
-let page = 1;
+export let maxPage = 1;
+export let page = 1;
 const searchQuery = "";
 
 // Fetch API
@@ -25,21 +22,3 @@ async function fetchCharacters() {
 }
 
 fetchCharacters();
-
-prevButton.addEventListener("click", () => {
-  if (page <= 1) {
-    throw new Error("Can not go over or under page-count");
-  }
-  page--;
-  fetchCharacters();
-  console.log(page);
-});
-
-nextButton.addEventListener("click", () => {
-  if (page >= maxPage) {
-    throw new Error("Can not go over or under page-count");
-  }
-  page++;
-  fetchCharacters();
-  console.log(page);
-});
