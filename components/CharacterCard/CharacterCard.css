@@ -1,9 +1,14 @@
 .card-container {
   margin-bottom: 10px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 10px;
 }
 .card {
   width: 300px;
   background-color: var(--color-secondary);
+
+  gap: 10px;
 }
 
 .card__info {

@@ -1,7 +1,7 @@
 export function createCharacterCard(character) {
-    const li = document.createElement("li");
-    li.className = "card";
-    const episodeCount = character.episode.length;
+  const li = document.createElement("li");
+  li.className = "card";
+  const episodeCount = character.episode.length;
 
     li.innerHTML = 
     `
@@ -27,5 +27,5 @@ export function createCharacterCard(character) {
           </div>
         </li>
     `;
-    return li;
+  return li;
 }
