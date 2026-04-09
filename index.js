@@ -1,4 +1,4 @@
-//import { createCharacterCard } from "./components/CharacterCard.js";
+import { createCharacterCard } from "./components/CharacterCard/CharacterCard.js";
 
 const cardContainer = document.querySelector('[data-js="card-container"]');
 const searchBarContainer = document.querySelector(
@@ -21,7 +21,14 @@ try{
     console.error("Oops:", error);
   }
   const characters = data.results;
-    return characters;
+  console.log(characters); // just for debugging
+
+  cardContainer.innerHTML = "";  // clear old cards
+  // Here the cards will be fetched dynamically
+  characters.forEach((character) => {
+    const card = createCharacterCard(character);
+    cardContainer.appendChild(card);
+  });
 }
 
 fetchCharacters();
