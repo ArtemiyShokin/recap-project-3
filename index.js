@@ -13,6 +13,7 @@ const maxPage = 1;
 const page = 1;
 const searchQuery = "";
 
+<<<<<<< Updated upstream
 // Fetch API
 
 async function fetchCharacters() {
@@ -25,3 +26,5 @@ async function fetchCharacters() {
 }
 
 fetchCharacters();
+=======
+>>>>>>> Stashed changes
