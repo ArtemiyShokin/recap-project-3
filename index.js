@@ -1,5 +1,5 @@
 import { createCharacterCard } from "./components/CharacterCard/CharacterCard.js";
-import { createSearchBar} from "./components/SearchBar/SearchBar.js";
+import { createSearchBar } from "./components/SearchBar/SearchBar.js";
 
 //pagination data
 const prevButton = document.querySelector('[data-js="button-prev"]');
@@ -16,32 +16,36 @@ const navigation = document.querySelector('[data-js="navigation"]');
 
 // States
 let page = 1;
-const pageResponse = await fetch(
-  `https://rickandmortyapi.com/api/character?page=${page}`,
-);
-const pageData = await pageResponse.json();
+// const pageResponse = await fetch(
+//   `https://rickandmortyapi.com/api/character?page=${page}`,
+// );
+// const pageData = await pageResponse.json();
 // console.log("hello?" + pageData.info.pages);
-let maxPage = pageData.info.pages;
+let maxPage = 1;
 let searchQuery = "";
 
 // Fetch API
 //generating the page info from the API
 
 async function fetchCharacters() {
-  
-try{
-  const url = new URL(`https://rickandmortyapi.com/api/character?page=${page}`);
-  if (searchQuery !== "") {
+  try {
+    const url = new URL(
+      `https://rickandmortyapi.com/api/character?page=${page}`,
+    );
+    if (searchQuery !== "") {
       url.searchParams.set("name", searchQuery);
     }
     url.searchParams.set("page", page);
-  const response = await fetch(url);
-  const data = await response.json();
+    const response = await fetch(url);
+    const data = await response.json();
 
-  const characters = data.results;
-  console.log(characters); // just for debugging
+    maxPage = data.info.pages;
+    pagination.textContent = `${page}/${maxPage}`;
+    const characters = data.results;
 
-   cardContainer.innerHTML = ""; // clear old cards
+    console.log(characters); // just for debugging
+
+    cardContainer.innerHTML = ""; // clear old cards
     // Here the cards will be fetched dynamically
     characters.forEach((character) => {
       const card = createCharacterCard(character);
@@ -51,8 +55,8 @@ try{
     console.error("Oops:", error);
   }
 }
-  // Search 
-  const searchBar = createSearchBar({
+// Search
+const searchBar = createSearchBar({
   onSubmit: (query) => {
     console.log("Search query:", query);
     searchQuery = query;
@@ -62,7 +66,6 @@ try{
 });
 
 searchBarContainer.append(searchBar);
-
 
 fetchCharacters();
 
