@@ -1,4 +1,6 @@
 import { createCharacterCard } from "./components/CharacterCard/CharacterCard.js";
+import { createSearchBar} from "./components/SearchBar/SearchBar.js";
+
 //pagination data
 const prevButton = document.querySelector('[data-js="button-prev"]');
 const nextButton = document.querySelector('[data-js="button-next"]');
@@ -9,7 +11,7 @@ const searchBarContainer = document.querySelector(
   '[data-js="search-bar-container"]',
 );
 //search engine
-const searchBar = document.querySelector('[data-js="search-bar"]');
+// const searchBar = document.querySelector('[data-js="search-bar"]');
 const navigation = document.querySelector('[data-js="navigation"]');
 
 // States
@@ -20,17 +22,24 @@ const pageResponse = await fetch(
 const pageData = await pageResponse.json();
 // console.log("hello?" + pageData.info.pages);
 let maxPage = pageData.info.pages;
-const searchQuery = "";
+let searchQuery = "";
 
 // Fetch API
 //generating the page info from the API
 
 async function fetchCharacters() {
-  try {
-    const response = await fetch(
-      `https://rickandmortyapi.com/api/character?page=${page}` /* I changed the fetchCharacters function to allow different page numbers to load */,
-    );
-    const data = await response.json();
+  
+try{
+  const url = new URL(`https://rickandmortyapi.com/api/character?page=${page}`);
+  if (searchQuery !== "") {
+      url.searchParams.set("name", searchQuery);
+    }
+    url.searchParams.set("page", page);
+  const response = await fetch(url);
+  const data = await response.json();
+
+  const characters = data.results;
+  console.log(characters); // just for debugging
 
     const characters = data.results;
     console.log(characters); // just for debugging
@@ -45,6 +54,18 @@ async function fetchCharacters() {
     console.error("Oops:", error);
   }
 }
+  // Search 
+  const searchBar = createSearchBar({
+  onSubmit: (query) => {
+    console.log("Search query:", query);
+    searchQuery = query;
+    page = 1;
+    fetchCharacters();
+  },
+});
+
+searchBarContainer.append(searchBar);
+
 
 fetchCharacters();
 
