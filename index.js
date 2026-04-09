@@ -14,14 +14,17 @@ const searchQuery = "";
 // Fetch API
 
 async function fetchCharacters() {
+try{
   const response = await fetch("https://rickandmortyapi.com/api/character");
   const data = await response.json();
-
+  } catch (error) {
+    console.error("Oops:", error);
+  }
   const characters = data.results;
   console.log(characters); // just for debugging
 
   cardContainer.innerHTML = "";  // clear old cards
-
+  // Here the cards will be fetched dynamically
   characters.forEach((character) => {
     const card = createCharacterCard(character);
     cardContainer.appendChild(card);
