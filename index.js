@@ -22,8 +22,6 @@ async function fetchCharacters() {
 
     const characters = data.results;
 
-    console.log(characters);
-
     return characters;
   } catch (error) {
     console.error("Oops:", error);
