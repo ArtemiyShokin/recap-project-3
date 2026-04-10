@@ -15,11 +15,11 @@
   --color-primary: rgb(51, 51, 51);
   --color-secondary: #f6f6f6;
   --color-third: #cfb5ffd1;
-  --font-family: "Dosis", sans-serif;
+  --font-dosis: "Dosis", sans-serif;
 }
 
 body {
-  font-family: var(--font-family);
+  font-family: var(--font-dosis);
   color: var(--color-primary);
   padding: 20px;
   background-image: linear-gradient(
