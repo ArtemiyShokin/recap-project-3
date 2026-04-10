@@ -1,6 +1,7 @@
 import { createCharacterCard } from "./components/CharacterCard/CharacterCard.js";
 import { createSearchBar } from "./components/SearchBar/SearchBar.js";
 import { NavButton } from "./components/NavButton/NavButton.js";
+import { NavPagination } from "./components/NavPagination/NavPagination.js";
 
 //pagination data
 const prevButton = document.querySelector('[data-js="button-prev"]');
@@ -16,13 +17,13 @@ const searchBarContainer = document.querySelector(
 const navigation = document.querySelector('[data-js="navigation"]');
 
 // States
-let page = 1;
+export let page = 1;
 // const pageResponse = await fetch(
 //   `https://rickandmortyapi.com/api/character?page=${page}`,
 // );
 // const pageData = await pageResponse.json();
 // console.log("hello?" + pageData.info.pages);
-let maxPage = 1;
+export let maxPage = 1;
 let searchQuery = "";
 
 // Fetch API
@@ -70,7 +71,7 @@ searchBarContainer.append(searchBar);
 
 fetchCharacters();
 
-function goToPreviousPage(){
+function goToPreviousPage() {
   if (page <= 1) {
     console.error("Can not go under 1");
     return;
@@ -79,7 +80,7 @@ function goToPreviousPage(){
   fetchCharacters();
 }
 
-function goToNextPage(){
+function goToNextPage() {
   if (page >= maxPage) {
     console.error(`Can not go over page ${maxPage}`);
     return;
@@ -88,8 +89,11 @@ function goToNextPage(){
   fetchCharacters();
 }
 
-const prevBtn = NavButton ({ text: "previous", onClick: goToPreviousPage });
+const prevBtn = NavButton({ text: "previous", onClick: goToPreviousPage });
 prevButton.appendChild(prevBtn);
+
+const pagination1 = NavPagination({ page, maxPage });
+pagination.appendChild(pagination1);
 
 const nextBtn = NavButton({ text: "next", onClick: goToNextPage });
 nextButton.appendChild(nextBtn);
@@ -104,11 +108,11 @@ prevButton.addEventListener("click", () => {
     throw new Error("Can not go under 1");
   }
   /* i had to remove the if page is under 1 function as it stops the function */
- /* page--;
+/* page--;
   fetchCharacters();
   pageChecker =
     pagination.textContent = `${page}/${maxPage}`; /* i wanted to change this to < pageChecker = `${page}/${maxPage}` > but it does not work */
- /* console.log(page);
+/* console.log(page);
 });
 
 nextButton.addEventListener("click", () => {
