@@ -40,6 +40,11 @@ async function fetchCharacters() {
     url.searchParams.set("page", page);
     const response = await fetch(url);
     const data = await response.json();
+    if (!response.ok) {
+  cardContainer.innerHTML = "<p>No characters found</p>";
+  pagination.textContent = "0/0";
+  return;
+}
 
     maxPage = data.info.pages;
     pagination.textContent = `${page}/${maxPage}`;
