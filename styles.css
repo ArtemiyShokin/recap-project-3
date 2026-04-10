@@ -2,6 +2,8 @@
 @import "components/SearchBar/SearchBar.css";
 @import "components/NavButton/NavButton.css";
 @import "components/NavPagination/NavPagination.css";
+@import url("https://fonts.googleapis.com/css2?family=Boldonse&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Dosis:wght@200..800&display=swap");
 
 * {
   box-sizing: border-box;
@@ -12,13 +14,22 @@
 :root {
   --color-primary: rgb(51, 51, 51);
   --color-secondary: #f6f6f6;
-  --font-family: system-ui;
+  --color-third: #cfb5ffd1;
+  --font-family: "Dosis", sans-serif;
 }
 
 body {
   font-family: var(--font-family);
   color: var(--color-primary);
   padding: 20px;
+  background-image: linear-gradient(
+    to right,
+    #eea2a2 0%,
+    #bbc1bf 19%,
+    #57c6e1 42%,
+    #b49fda 79%,
+    #7ac5d8 100%
+  );
 }
 
 main {
@@ -29,4 +40,13 @@ main {
 
 .title {
   padding: 10px 0;
+  font-family: "Boldonse", system-ui;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.boldonse-regular {
+  font-family: "Boldonse", system-ui;
+  font-weight: 400;
+  font-style: normal;
 }
